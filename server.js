@@ -14,8 +14,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/", express.static("public"));
 
+const dbName = "budgetData"; // Corrected database name
+const collectionName = "budget"; // Corrected collection name
+
 app.get("/budget", (req, res) => {
-  mongoose.connect("mongodb://127.0.0.1:27017/budgetData", {
+  mongoose.connect(`mongodb://127.0.0.1:27017/${dbName}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -38,7 +41,7 @@ app.get("/budget", (req, res) => {
 
 app.post("/addExpense", (req, res) => {
 
-  mongoose.connect("mongodb://127.0.0.1:27017/budgetData", {
+  mongoose.connect(`mongodb://127.0.0.1:27017/${dbName}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -66,9 +69,6 @@ app.post("/addExpense", (req, res) => {
       res.status(400).json({ error: 'Internal Server error - Database connection failed' });
     });
 });
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
