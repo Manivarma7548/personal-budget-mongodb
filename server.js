@@ -14,8 +14,8 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/", express.static("public"));
 
-const dbName = "budgetData"; // Corrected database name
-const collectionName = "budget"; // Corrected collection name
+const dbName = "budgetData"; 
+const collectionName = "budget"; 
 
 app.get("/budget", (req, res) => {
   mongoose.connect(`mongodb://127.0.0.1:27017/${dbName}`, {
